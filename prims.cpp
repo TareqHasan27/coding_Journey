@@ -14,6 +14,7 @@ void prims(vector<pair<int, int>> graph[], int source, int node)
 	pq.push({0, source});
 	vector<pair<int, int>> mst;
 	vector<int> parent(node + 1, -1);
+	parent[source] = 0;
 	while (!pq.empty())
 	{
 		auto top = pq.top();
@@ -36,7 +37,8 @@ void prims(vector<pair<int, int>> graph[], int source, int node)
 				if (!vis[x])
 				{
 					pq.push({y, x});
-					parent[x] = b;
+					if (parent[x] == -1)
+						parent[x] = b;
 				}
 			}
 		}
